@@ -1,2 +1,2 @@
-plataforma.o: plataforma.cpp contenido.h plataforma.h serie.h episodio.h \
- video.h pelicula.h
+plataforma.o: plataforma.cpp contenido.h plataforma.h pelicula.h video.h \
+ serie.h episodio.h

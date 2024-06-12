@@ -1,1 +1,1 @@
-video.o: video.cpp video.h contenido.h
+video.o: video.cpp video.h

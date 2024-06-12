@@ -1,65 +1,87 @@
 #include "serie.h"
-#include "episodio.h"
-#include "contenido.h"
-#include <iostream>
-#include "video.h"
-using std::string;
 using std::endl;
 using std::cout;
-using std::vector;
+#include <iostream>
+#include <sstream>
+#include <string>
+using std::string;
+using std::stringstream;
+using std::getline;
 
-Serie::Serie(const string& id, const string& nombre, const string& genero)
-: id(id), nombre(nombre), genero(genero) {}
 
-bool Serie::operator >(float min_calif)
+Serie::Serie()
+{}
+
+Serie::Serie(string id, string nombre, string genero)
 {
-    return calificacion > min_calif;
+    id = id;
+    nombre = nombre;
+    genero = genero;
 }
 
-bool Serie::operator ==(const string& nombre)
+void Serie::calificar(string nombre,float califica)
 {
-    return this->nombre == nombre;
-}
-
-void Serie::print_if_gen(const string& genero)
-{
-    if(this->genero == genero)
+    for (int i = 0; i<episodios.size(); i++)
     {
-        cout << "ID: " << id << endl;
-        cout << "Nombre: " << nombre << endl;
-        cout << "Calificacion: " << calificacion << endl;
-        cout << "Genero: " << this->genero << endl;
+        episodios[i]->calificar(nombre, califica);
     }
 }
 
 void Serie::imprimir()
 {
-    cout << "ID: " << id << endl;
-    cout << "Nombre: " << nombre << endl;
-    cout << "Calificacion: " << calificacion << endl;
-    cout << "Genero: " << genero << endl;
+    cout << ":) :) :) :) :) :) :) :) :) :) :) :)" << endl;
+    cout << "Género escogido: " << genero << endl;
+    cout << nombre << endl;
 }
 
-void Serie::mostrar_serie_ind()
+void Serie::operator > (float califica)
 {
-    cout << "ID: " << id << endl;
-    cout << "Nombre: " << nombre << endl;
-    cout << "Calificacion: " << calificacion << endl;
-    cout << "Genero: " << genero << endl;
+    for (int i = 0; i<episodios.size(); i++)
+    {
+        *episodios[i] > califica;
+    }
 }
 
-float Serie::get_calif()
+void Serie::mostrar_info_individual(string nombrE)
 {
-    return calificacion;
+    if(nombre == nombrE)
+    {
+        Serie::imprimir();
+        cout << "EPISODIOS: " << endl;
+        cout << endl;
+        for (int i = 0; i<episodios.size(); i++)
+        {
+            cout << *episodios[i];
+        }
+    }
 }
 
-void Serie::calificar(float calificacion)
+void Serie::operator == (string geneRO)
 {
-    this->calificacion = calificacion;
+    stringstream s(genero);
+    string token;
+    while (getline(s, token, ';')) 
+    {
+        token.erase(0, token.find_first_not_of(' '));
+        if (token == geneRO) 
+        {
+            Serie::imprimir();
+            return;
+        }
+    }
 }
 
-void Serie::agregar_episodios(Episodio* episodio)
+bool Serie::identificacion(string nombre)
+{
+    return nombre == nombre;
+}
+
+
+void Serie::agregar_episodio(Episodio* episodio) 
 {
     episodios.push_back(episodio);
 }
 
+
+Serie::~Serie()
+{}

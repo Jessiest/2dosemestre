@@ -1,33 +1,22 @@
 #include "video.h"
-#include <iostream>
-using std::string;
 using std::endl;
 using std::cout;
 
-Video::Video(const string& id, const string& nombre, float calificacion, float duracion, const string& fecha_estreno)
-: id(id), nombre(nombre), calificacion(calificacion), duracion(duracion), fecha_estreno(fecha_estreno) {}
+Video::Video()
+{}
 
-bool Video::operator == (const string& nombre)
+Video::Video(string id, string nombre, float calificacion, int duracion, string fecha_estreno)
 {
-    return this->nombre == nombre;
+    id = id;
+    nombre = nombre ;
+    calificacion = calificacion;
+    duracion = duracion;
+    fecha_estreno = fecha_estreno;
 }
 
 void Video::imprimir()
 {
-    cout << "ID: " << id << endl;
-    cout << "Nombre: " << nombre << endl;
-    cout << "Calificacion: " << calificacion << endl;
-    cout << "Duracion: " << duracion << endl;
-    cout << "Fecha de estreno: " << fecha_estreno << endl;
+    cout << nombre<< "      Con Puntiación de: " << calificacion << endl;
+    cout << duracion<< " minutos   Estrenado el: " << fecha_estreno <<endl;
+    
 }
-
-float Video::get_calif()
-{
-    return calificacion;
-}
-
-void Video::set_calif(float calificacion)
-{
-    this->calificacion = calificacion;
-}
-

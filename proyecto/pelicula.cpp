@@ -1,64 +1,84 @@
 #include "pelicula.h"
-#include "video.h"
-#include <iostream>
-using std::string;
 using std::endl;
 using std::cout;
+#include <iostream>
+#include <sstream>
+#include <string>
+using std::string;
+using std::stringstream;
+using std::getline;
 
-Pelicula::Pelicula(const string& id, const string& nombre, float calificacion, float duracion, const string& fecha_estreno, const string& genero)
-: Video(id, nombre, calificacion, duracion, fecha_estreno), genero(genero) {}
 
-bool Pelicula::operator >(float min_calif)
+Pelicula::Pelicula()
+{}
+
+Pelicula::Pelicula(string id, string nombre, float calificacion, int duracion, string fecha_estreno, string _genero) : 
+Video(id,nombre, calificacion,duracion,fecha_estreno)
 {
-    return calificacion > min_calif;
+    genero = genero;
 }
 
-bool Pelicula::operator ==(const string& nombre)
+void Pelicula::calificar(string nombre, float calificacion)
 {
-    return this->nombre == nombre;
-}
-
-void Pelicula::print_if_gen(const string& genero)
-{
-    if(this->genero == genero)
+    if (calificacion >= 1 && calificacion <= 10) 
     {
-        cout << "ID: " << id << endl;
-        cout << "Nombre: " << nombre << endl;
-        cout << "Calificacion: " << calificacion << endl;
-        cout << "Duracion: " << duracion << endl;
-        cout << "Fecha de estreno: " << fecha_estreno << endl;
-        cout << "Genero: " << this->genero << endl;
+        if (nombre == nombre) 
+        {
+            calificacion = calificacion;
+        }
+    } else {
+        string msj = "Calificación  NO VÁLIDA";
+        throw(msj);
+    }
+}
+
+void Pelicula::imprimir()
+{
+    cout << "POR: " <<genero << endl;
+    Video::imprimir();
+}
+
+void Pelicula::operator > (float califica)
+{
+    if (calificacion > califica )
+    {
+        Pelicula::imprimir();
+    }
+}
+
+void Pelicula::operator==(string geneRO)
+{
+    stringstream s(genero);
+    string token;
+    while (getline(s, token, ';')) 
+    {
+        token.erase(0, token.find_first_not_of(' '));
+        if (token == geneRO) 
+        {
+            Pelicula::imprimir();
+            return;
+        }
+    }
+}
+
+bool Pelicula::identificacion(string nombre)
+{
+    if(nombre == nombre)
+    {
+        return true;
+    }else{
+        return false;
+    }
+}
+
+void Pelicula::mostrar_info_individual(string nombre)
+{
+    if (nombre == nombre)
+    {
+        Pelicula::imprimir();
     }
 }
 
 
-void Pelicula::imprimir()
-{
-    cout << "ID: " << id << endl;
-    cout << "Nombre: " << nombre << endl;
-    cout << "Calificacion: " << calificacion << endl;
-    cout << "Duracion: " << duracion << endl;
-    cout << "Fecha de estreno: " << fecha_estreno << endl;
-    cout << "Genero: " << genero << endl;
-}
-
-void Pelicula::peli_ind()
-{
-    cout << "ID: " << id << endl;
-    cout << "Nombre: " << nombre << endl;
-    cout << "Calificacion: " << calificacion << endl;
-    cout << "Duracion: " << duracion << endl;
-    cout << "Fecha de estreno: " << fecha_estreno << endl;
-    cout << "Genero: " << genero << endl;
-}
-
-float Pelicula::get_calif()
-{
-    return calificacion;
-}
-
-void Pelicula::calificar(float calif_nueva)
-{
-    calificacion = calif_nueva;
-}
-
+Pelicula::~Pelicula()
+{}

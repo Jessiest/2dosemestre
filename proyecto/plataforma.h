@@ -1,14 +1,21 @@
-#ifndef _PLATAFORMA_H_
-#define _PLATAFORMA_H_
+#ifndef _PLATAFORMA_H
+#define _PLATAFORMA_H
+#include <fstream>
+#include <sstream>
+#include <stdexcept>
 #include "contenido.h"
-#include "serie.h"
-#include "episodio.h"
 #include "pelicula.h"
-#include "video.h"
-#include <iostream>
+#include "serie.h"
 #include <vector>
 using std::vector;
-using std::string;
+using std::ifstream;
+using std::stringstream;
+using std::to_string;
+using std::stoi;
+using  std::stof;
+using std::endl;
+using std::cin;
+
 
 class Plataforma
 {
@@ -19,13 +26,10 @@ class Plataforma
     Plataforma();
     void menu();
     void ver_todo();
-    void cargar_archivo();
     void mostrar_videosgeneral_calificacion();
     void mostrar_videos_genero();
     void mostrar_por_nombre();
     void calificar_video();
-    Contenido* obten_video(string& nombre);
-    Contenido* obten_contenido(string& nombre);
     int verifica_num_excepcion();
     ~Plataforma();
 };

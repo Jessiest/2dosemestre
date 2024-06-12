@@ -1,0 +1,112 @@
+<mxfile host="65bd71144e">
+    <diagram id="CPpHWFJ4b58g683K6WPi" name="Página-1">
+        <mxGraphModel dx="1108" dy="1470" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="Video" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="240" y="180" width="280" height="320" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="&#10;-id:string&#10;#nombre:string&#10;#calificacion : float&#10;-duracion : int&#10;-fecha_estreno:string" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="2" vertex="1">
+                    <mxGeometry y="26" width="280" height="134" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="+Video()&#10;+Video(string id, string nombre, float calificacion,&#10;    int duracion, string fecha_estreno)&#10;+ imprimir () :void " style="fontStyle=0;align=left;" parent="2" vertex="1">
+                    <mxGeometry y="160" width="280" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Pelicula" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=55;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-60" y="560" width="310" height="250" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="5" target="22" edge="1">
+                    <mxGeometry width="160" relative="1" as="geometry">
+                        <mxPoint x="150" as="sourcePoint"/>
+                        <mxPoint x="150" y="-510" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="7" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="5" target="2" edge="1">
+                    <mxGeometry width="160" relative="1" as="geometry">
+                        <mxPoint x="150" as="sourcePoint"/>
+                        <mxPoint x="460" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="160" y="-50"/>
+                            <mxPoint x="310" y="-50"/>
+                            <mxPoint x="440" y="-10"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="8" value="&lt;span style=&quot;&quot;&gt;-genero:string&lt;/span&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="5" vertex="1">
+                    <mxGeometry y="55" width="310" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="+ Pelicula()&#10;+ Pelicula(id: string, nombre: string , &#10;   calificacion: float, duracion: int, fecha_estreno: string,&#10;   genero: string)&#10;+ operator &gt; ( float) : void &#10;+ operator  == ( string): &#10;+ mostrar_info_individual (geneRO: string): void&#10;+ imprimir(): void &#10;+ calificar(nombre: string, calificacion: float):void&#10;+ identificacion(string) : bool&#10;+ ~Pelicula()" style="fontStyle=0;align=left;" parent="5" vertex="1">
+                    <mxGeometry y="85" width="310" height="165" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="5" source="14" edge="1">
+                    <mxGeometry x="0.0222" y="6" width="160" relative="1" as="geometry">
+                        <mxPoint x="720" y="-40" as="sourcePoint"/>
+                        <mxPoint x="440" y="-50" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="720" y="-50"/>
+                            <mxPoint x="580" y="-50"/>
+                            <mxPoint x="500" y="-50"/>
+                            <mxPoint x="440" y="-10"/>
+                        </Array>
+                        <mxPoint x="-1" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="11" value="Serie" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=55;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="650" y="90" width="270" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="&lt;br style=&quot;padding: 0px; margin: 0px;&quot;&gt;-id:string&lt;br style=&quot;padding: 0px; margin: 0px;&quot;&gt;-nombre:string&lt;br&gt;&lt;span style=&quot;&quot;&gt;-genero:string&lt;br&gt;- episodios : vector&amp;lt;Episodio*&amp;gt;&amp;nbsp;&lt;/span&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="11" vertex="1">
+                    <mxGeometry y="55" width="270" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="+ Serie()&#10;+ Serie (id: int , nombre: string , genero: string)&#10;+ operator &gt; (float) : void &#10;+ operator  == (string): void&#10;+ mostrar_info_individual ( string): void&#10;+ calificar (string, float ): void&#10;+ imprmir(): void&#10;+ agregar_episodio (Episodio*) : void&#10;+ identificacion(string):bool&#10;~Serie()" style="fontStyle=0;align=left;" parent="11" vertex="1">
+                    <mxGeometry y="145" width="270" height="135" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="Episodio" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=55;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="510" y="560" width="310" height="300" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="" style="endArrow=diamondThin;endFill=1;endSize=24;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="14" target="11" edge="1">
+                    <mxGeometry width="160" relative="1" as="geometry">
+                        <mxPoint x="160" as="sourcePoint"/>
+                        <mxPoint x="320" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="250" y="-50"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="16" value="&lt;br&gt;- temporada : int&lt;br&gt;- num_episodio : int&lt;br&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="14" vertex="1">
+                    <mxGeometry y="55" width="310" height="105" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="+ Episodio()&#10;+ Episodio(id: string, nombre: string ,&#10;   calificacion: float, duracion: float, fecha_estren: string, &#10;   temporada: int, num_ep: int)&#10; + calificar(nombre: string, calificacion: float):void&#10;+ mostrar_info_individual( string):void&#10;+ operator &gt; ( float) : void &#10;+ ~Pelicula()" style="fontStyle=0;align=left;" parent="14" vertex="1">
+                    <mxGeometry y="160" width="310" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="Plataforma" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="210" y="-390" width="280" height="328" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="- ver_cont: vector&lt;Contenido*&gt;&#10;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="18" vertex="1">
+                    <mxGeometry y="26" width="280" height="54" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="18" vertex="1">
+                    <mxGeometry y="80" width="280" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="+ Plataforma()&lt;br&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ play() : void&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ menu(): void&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ cargar_archivo(): void&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ calificacion_video(calif : float) : void&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ plataforma_peliculas() : void&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ plataforma_series() : void&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ ver_calificacion(nombre : string ) : void&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ dar_calificacion(nombre: string ) : void&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ obten_video( nombre: string) :*Contenido&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ obten_contenido ( nombre: string) : *Contenido&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ salir() : void&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ ~Plataforma()&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="18" vertex="1">
+                    <mxGeometry y="108" width="280" height="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="«interface»&lt;br&gt;&lt;b&gt;Contenido&lt;br&gt;&lt;br&gt;&lt;/b&gt;+operator &amp;gt;( float): void&lt;br&gt;+operator == (string) : void&lt;br&gt;+ mostrar_info_individual(string) : void&lt;br&gt;+ imprimir () :void&lt;br&gt;+ calificar(string, float): void&lt;br&gt;+ identificacion(strng): void&amp;nbsp;" style="html=1;" parent="1" vertex="1">
+                    <mxGeometry x="210" y="10" width="280" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="" style="endArrow=diamondThin;endFill=1;endSize=24;html=1;entryX=0.495;entryY=1.002;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="21" edge="1">
+                    <mxGeometry width="160" relative="1" as="geometry">
+                        <mxPoint x="350" y="30" as="sourcePoint"/>
+                        <mxPoint x="350" y="-40" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="24" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.004;exitY=0.444;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="12" target="22" edge="1">
+                    <mxGeometry width="160" relative="1" as="geometry">
+                        <mxPoint x="450" y="220" as="sourcePoint"/>
+                        <mxPoint x="610" y="220" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

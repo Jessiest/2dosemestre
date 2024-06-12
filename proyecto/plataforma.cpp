@@ -20,14 +20,59 @@ using std::getline;
 
 Plataforma::Plataforma()
 {
-    cargar_archivo();
+    ifstream archivo;
+    archivo.open("BasePeliculas.csv");
+    string lineas;
+    getline(archivo,lineas);
+    while(getline(archivo,lineas)){
+        stringstream s(lineas);
+        string id, nombre, _duracion, genero, _calificacion, fecha_estreno, nombre_episodio, _temporada, _num_episodio, id_episodio;
+        getline(s, id, ',');
+        getline(s, nombre, ',');
+        getline(s, _duracion, ',');
+        getline(s, genero, ',');
+        getline(s, _calificacion, ',');
+        getline(s, fecha_estreno, ',');
+        getline(s, nombre_episodio, ',');
+        getline(s, _temporada, ',');
+        getline(s, _num_episodio, ',');
+        getline(s, id_episodio, ',');
+        int duracion = stoi(_duracion);
+        float calificacion = stof(_calificacion);
+        if (nombre_episodio.empty()){
+                Pelicula *pelicula = new Pelicula(id, nombre, calificacion, duracion, fecha_estreno, genero);
+                ver_cont.push_back(pelicula);
+        } else{
+                int temporada = stoi(_temporada);
+                int num_episodio = stoi(_num_episodio); 
+                Episodio *episodio = new Episodio(id_episodio, nombre_episodio, calificacion, duracion, fecha_estreno, temporada, num_episodio);   
+                bool jess = true;
+                for(int i = 0; i<ver_cont.size(); i++)
+                {
+                    if(ver_cont[i]->identificacion(nombre))
+                    {
+                        Serie* serie = dynamic_cast<Serie*>(ver_cont[i]);
+                        serie->agregar_episodio(episodio);
+                        jess = false;
+                    }
+                }
+                if (jess)
+                {
+                    Serie* serie = new Serie(id,nombre,genero);
+                    ver_cont.push_back(serie);
+                }
+
+        }
+    }
+    archivo.close();
 }
 
 void Plataforma::menu()
 {
-    int opcion;
+    bool salir = false;
     do
     {
+        int opcion = 0;
         cout << "1. Ver todo" << endl;
         cout << "2. Mostrar videos por calificacion" << endl;
         cout << "3. Mostrar videos por genero" << endl;
@@ -54,160 +99,100 @@ void Plataforma::menu()
                 calificar_video();
                 break;
             case 6:
-                cout << "Saliendo..." << endl;
-                break;
-            default:
-                cout << "Opcion invalida" << endl;
+                salir = true;
                 break;
         }
-    } while(opcion != 6);
+    } while(!salir);
 }
 
 void Plataforma::ver_todo()
 {
-    for(auto& i : ver_cont)
+    int c = 0;
+    for (Contenido* contenido:ver_cont)
     {
-        i->imprimir();
+        contenido->imprimir();
+        c++;
     }
-}
-
-void Plataforma::cargar_archivo()
-{
-    ifstream archivo("contenido.txt");
-    if(archivo.is_open())
-    {
-        string linea;
-        while(getline(archivo, linea))
-        {
-            stringstream ss(linea);
-            string id, nombre, genero, calificacion, duracion, fecha_estreno, nombre_episodio, temporada, num_episodio, id_episodio, calificacion_ep, duracion_ep, fecha_estreno_ep;
-            getline(ss, id, ',');
-            getline(ss, nombre, ',');
-            getline(ss, genero, ',');
-            getline(ss, calificacion, ',');
-            getline(ss, duracion, ',');
-            getline(ss, fecha_estreno, ',');
-            getline(ss, nombre_episodio, ',');
-            getline(ss, temporada, ',');
-            getline(ss, num_episodio, ',');
-            getline(ss, id_episodio, ',');
-            getline(ss, calificacion_ep, ',');
-            getline(ss, duracion_ep, ',');
-            getline(ss, fecha_estreno_ep, ',');
-            if(id_episodio == "")
-            {
-                Pelicula* pelicula = new Pelicula(id, nombre, stof(calificacion), stof(duracion), fecha_estreno, genero);
-                ver_cont.push_back(pelicula);
-            }
-            else
-            {
-                Episodio* episodio = new Episodio(id, nombre, stof(calificacion), stof(duracion), fecha_estreno, nombre_episodio, stoi(temporada), stoi(num_episodio), id_episodio, stof(calificacion_ep), stof(duracion_ep), fecha_estreno_ep);
-                ver_cont.push_back(episodio);
-            }
-        }
-    }
-    else
-    {
-        cout << "No se pudo abrir el archivo" << endl;
-    }
+    cout << c << endl;
 }
 
 void Plataforma::mostrar_videosgeneral_calificacion()
 {
-    float calificacion;
-    cout << "Ingrese la calificacion: ";
-    calificacion = verifica_num_excepcion();
-    for(auto& i : ver_cont)
-    {
-        if(i->get_calif() > calificacion)
+    float califica;
+    cout << "Contenido con calificación general de: ";
+    califica = verifica_num_excepcion();
+        for (Contenido * contenido:ver_cont)
         {
-            i->imprimir();
-        }
+        *contenido > califica;
     }
 }
 
 void Plataforma::mostrar_videos_genero()
 {
     string genero;
-    cout << "Ingrese el genero: ";
+    cout << "Ingresa el género de tu interés: " << endl;
     cin >> genero;
-    for(auto& i : ver_cont)
+    for (Contenido * contenido:ver_cont)
     {
-        i->print_if_gen(genero);
+        *contenido == genero;
     }
 }
 
 void Plataforma::mostrar_por_nombre()
 {
     string nombre;
-    cout << "Ingrese el nombre: ";
-    cin >> nombre;
-    for(auto& i : ver_cont)
+    cout << "Resultados coincidentes: " << endl;
+    cin.ignore();
+    getline(cin,nombre);
+    for (Contenido * contenido:ver_cont)
     {
-        if(*i == nombre)
-        {
-            i->imprimir();
-        }
+        contenido->mostrar_info_individual(nombre);
     }
 }
 
 void Plataforma::calificar_video()
 {
+    try
+    {
     string nombre;
-    float calificacion;
-    cout << "Ingrese el nombre: ";
-    cin >> nombre;
-    cout << "Ingrese la calificacion: ";
-    calificacion = verifica_num_excepcion();
-    for(auto& i : ver_cont)
+    float califica;
+    cout << "Ingresa el nombre del contenido y la calificación que le asiganas: " << endl;
+    cin.ignore();
+    getline(cin,nombre);
+    cin >> califica;
+    for (Contenido *contenido:ver_cont)
     {
-        if(*i == nombre)
-        {
-            i->calificar(calificacion);
-        }
+        contenido->calificar(nombre, califica);
+    }}catch(const string& mensaje){
+        cout << mensaje << ". Debe ser una califcación entre 1 y 10" << endl;
     }
-}
-
-Contenido* Plataforma::obten_video(string& nombre)
-{
-    for(auto& i : ver_cont)
-    {
-        if(*i == nombre)
-        {
-            return i;
-        }
-    }
-    return nullptr;
-}
-
-Contenido* Plataforma::obten_contenido(string& nombre)
-{
-    for(auto& i : ver_cont)
-    {
-        if(*i == nombre)
-        {
-            return i;
-        }
-    }
-    return nullptr;
 }
 
 int Plataforma::verifica_num_excepcion()
 {
-    int num;
-    while(!(cin >> num))
+    int opcion;
+    while (true)
     {
-        cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        cout << "Ingrese un numero valido: ";
+        try 
+        {
+            cin >> opcion;
+            if (cin.fail()) {
+                cin.clear();
+                cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                throw "Error: Carácter Inválido.";
+            }
+            return opcion;
+        } catch (const char* msg) 
+        {
+            cout << msg << endl;
+        }
     }
-    return num;
 }
 
 Plataforma::~Plataforma()
 {
-    for(auto& i : ver_cont)
+    for (int i = 0; i < ver_cont.size(); i++) 
     {
-        delete i;
+        delete ver_cont[i];
     }
 }
